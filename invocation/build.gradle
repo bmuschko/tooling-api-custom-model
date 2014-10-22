@@ -10,7 +10,8 @@ buildscript {
     }
 }
 
-import org.gradle.tooling.*
+import org.gradle.tooling.GradleConnector
+import org.gradle.tooling.ProjectConnection
 import org.gradle.sample.plugins.toolingapi.custom.CustomModel
 
 task checkJavaPlugin {
