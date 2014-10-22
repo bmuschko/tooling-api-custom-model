@@ -10,12 +10,10 @@ buildscript {
     }
 }
 
-apply plugin: 'tooling-api-custom-model'
-
 import org.gradle.tooling.*
 import org.gradle.sample.plugins.toolingapi.custom.CustomModel
 
-task checkPlugins {
+task checkJavaPlugin {
     doLast {
         GradleConnector connector = GradleConnector.newConnector()
         connector.forProjectDirectory(new File("$projectDir/sample"))
@@ -23,8 +21,8 @@ task checkPlugins {
         
         try {
             connection = connector.connect()
-            CustomModel model = connection.getModel(CustomModel)            
-            assert model.hasPlugin(org.gradle.api.plugins.JavaPlugin)
+            CustomModel model = connection.getModel(CustomModel.class)            
+            assert model.hasPlugin(JavaPlugin.class)
         } finally {
             connection?.close()
         }

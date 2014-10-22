@@ -1,9 +1,15 @@
-apply plugin: 'java'
-apply plugin: MyPlugin
-
-class MyPlugin implements Plugin<Project> {
-    @Override
-    void apply(Project project) {
-        println "Hello World!"
+buildscript {
+    repositories {
+        maven { 
+            url "$projectDir/../../plugin/build/repo"
+        }
+    }
+    
+    dependencies {
+        classpath 'org.gradle.sample.plugins.toolingapi:plugin:1.0'
     }
 }
+
+apply plugin: 'tooling-api-custom-model'
+
+apply plugin: 'java'
