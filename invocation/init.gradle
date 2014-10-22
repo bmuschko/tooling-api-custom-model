@@ -1,0 +1,15 @@
+initscript {
+    repositories {
+        maven { 
+            url new File('../repo').toURI().toURL()
+        }
+    }
+
+    dependencies {
+        classpath 'org.gradle.sample.plugins.toolingapi:plugin:1.0'
+    }
+}
+
+allprojects {
+    apply plugin: org.gradle.sample.plugins.toolingapi.custom.ToolingApiCustomModelPlugin
+}

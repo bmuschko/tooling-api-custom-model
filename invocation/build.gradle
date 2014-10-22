@@ -12,6 +12,7 @@ buildscript {
 
 import org.gradle.tooling.GradleConnector
 import org.gradle.tooling.ProjectConnection
+import org.gradle.tooling.ModelBuilder
 import org.gradle.sample.plugins.toolingapi.custom.CustomModel
 
 task checkJavaPlugin {
@@ -22,7 +23,9 @@ task checkJavaPlugin {
         
         try {
             connection = connector.connect()
-            CustomModel model = connection.getModel(CustomModel.class)            
+            ModelBuilder<CustomModel> customModelBuilder = connection.model(CustomModel.class)
+            customModelBuilder.withArguments("--init-script", "$projectDir/init.gradle")  
+            CustomModel model = customModelBuilder.get()         
             assert model.hasPlugin(JavaPlugin.class)
         } finally {
             connection?.close()

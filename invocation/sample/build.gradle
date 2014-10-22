@@ -1,15 +1,1 @@
-buildscript {
-    repositories {
-        maven { 
-            url "$projectDir/../../repo"
-        }
-    }
-    
-    dependencies {
-        classpath 'org.gradle.sample.plugins.toolingapi:plugin:1.0'
-    }
-}
-
-apply plugin: 'tooling-api-custom-model'
-
 apply plugin: 'java'
