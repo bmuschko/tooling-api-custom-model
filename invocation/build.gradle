@@ -1,0 +1,32 @@
+buildscript {
+    repositories {
+        maven { 
+            url "$projectDir/../plugin/build/repo"
+        }
+    }
+    
+    dependencies {
+        classpath 'org.gradle.sample.plugins.toolingapi:plugin:1.0'
+    }
+}
+
+apply plugin: 'tooling-api-custom-model'
+
+import org.gradle.tooling.*
+import org.gradle.sample.plugins.toolingapi.custom.CustomModel
+
+task checkPlugins {
+    doLast {
+        GradleConnector connector = GradleConnector.newConnector()
+        connector.forProjectDirectory(new File("$projectDir/sample"))
+        ProjectConnection connection
+        
+        try {
+            connection = connector.connect()
+            CustomModel model = connection.getModel(CustomModel)            
+            assert model.hasPlugin(org.gradle.api.plugins.JavaPlugin)
+        } finally {
+            connection?.close()
+        }
+    }
+}
