@@ -1,12 +1,12 @@
 buildscript {
     repositories {
         maven { 
-            url "$projectDir/../plugin/build/repo"
+            url "$projectDir/../repo"
         }
     }
     
     dependencies {
-        classpath 'org.gradle.sample.plugins.toolingapi:plugin:1.0'
+        classpath 'org.gradle.sample.plugins.toolingapi:model:1.0'
     }
 }
 

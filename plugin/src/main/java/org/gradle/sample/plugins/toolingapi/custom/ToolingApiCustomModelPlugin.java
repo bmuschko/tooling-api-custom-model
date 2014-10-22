@@ -29,13 +29,13 @@ public class ToolingApiCustomModelPlugin implements Plugin<Project> {
 
         @Override
         public Object buildAll(String modelName, Project project) {
-            List<Class> plugins = new ArrayList<Class>();
+            List<String> pluginClassNames = new ArrayList<String>();
 
             for(Plugin plugin : project.getPlugins()) {
-                plugins.add(plugin.getClass());
+                pluginClassNames.add(plugin.getClass().getName());
             }
 
-            return new DefaultModel(plugins);
+            return new DefaultModel(pluginClassNames);
         }
     }
 }
