@@ -18,7 +18,7 @@ import org.gradle.sample.plugins.toolingapi.custom.CustomModel
 task checkJavaPlugin {
     doLast {
         GradleConnector connector = GradleConnector.newConnector()
-        connector.forProjectDirectory(new File("$projectDir/sample"))
+        connector.forProjectDirectory(file("sample"))
         ProjectConnection connection
         
         try {
