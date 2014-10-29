@@ -16,6 +16,6 @@ From the root project you can build and publish the plugin by running the comman
 
 ## Invoking the tooling API
 
-As the next step we can execute the build that uses the custom model registered by the plugin with the tooling API. Navigate to the subdirectory `invocation` and execute the command `./gradlew checkJavaPlugin`. Executing the command will run a build for the `build.gradle` file in the subdirectory `sample`.
+As the next step we can execute the build that uses the custom model registered by the plugin with the tooling API. Navigate to the subdirectory `invocation` and execute the command `../gradlew checkJavaPlugin`. Executing the command will run a build for the `build.gradle` file in the subdirectory `sample`.
 
 
