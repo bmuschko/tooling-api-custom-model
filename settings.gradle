@@ -1,1 +1,1 @@
-include 'model', 'plugin'
+include 'model', 'plugin', 'invocation'

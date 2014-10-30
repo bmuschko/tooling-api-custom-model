@@ -1,34 +1,19 @@
-buildscript {
-    repositories {
-        maven { 
-            url "$projectDir/../repo"
-        }
+apply plugin: 'application'
+
+repositories {
+    maven { 
+        url "$projectDir/../repo"
     }
+    maven {
+        url 'https://repo.gradle.org/gradle/libs-releases-local'
+    }
+    mavenCentral()
+}
     
-    dependencies {
-        classpath 'org.gradle.sample.plugins.toolingapi:model:1.0'
-    }
+dependencies {
+    compile 'org.gradle.sample.plugins.toolingapi:model:1.0'
+    compile "org.gradle:gradle-tooling-api:2.1"
+    runtime 'org.slf4j:slf4j-simple:1.7.5'
 }
 
-import org.gradle.tooling.GradleConnector
-import org.gradle.tooling.ProjectConnection
-import org.gradle.tooling.ModelBuilder
-import org.gradle.sample.plugins.toolingapi.custom.CustomModel
-
-task checkJavaPlugin {
-    doLast {
-        GradleConnector connector = GradleConnector.newConnector()
-        connector.forProjectDirectory(file("sample"))
-        ProjectConnection connection
-        
-        try {
-            connection = connector.connect()
-            ModelBuilder<CustomModel> customModelBuilder = connection.model(CustomModel.class)
-            customModelBuilder.withArguments("--init-script", "$projectDir/init.gradle")  
-            CustomModel model = customModelBuilder.get()         
-            assert model.hasPlugin(JavaPlugin.class)
-        } finally {
-            connection?.close()
-        }
-    }
-}
+mainClassName = 'org.gradle.sample.toolingapi.ToolingApiRunner'
