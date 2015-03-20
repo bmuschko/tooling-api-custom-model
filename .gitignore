@@ -7,3 +7,6 @@ repo
 *.iws
 .idea
 .gradle
+.classpath
+.project
+.settings/
