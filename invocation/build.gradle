@@ -17,3 +17,5 @@ dependencies {
 }
 
 mainClassName = 'org.gradle.sample.toolingapi.ToolingApiRunner'
+
+compileJava.dependsOn project(':model').publish
