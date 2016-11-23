@@ -20,6 +20,9 @@ public class ToolingApiRunner {
             customModelBuilder.withArguments("--init-script", "init.gradle"); 
             CustomModel model = customModelBuilder.get();        
             assert model.hasPlugin(JavaPlugin.class);
+
+            System.out.println("JAVA PLUGIN IS FOUND");
+
         } finally {
             if(connection != null) {
                 connection.close();
